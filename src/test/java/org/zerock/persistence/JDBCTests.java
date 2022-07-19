@@ -19,16 +19,16 @@ public class JDBCTests {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void testConnection() {
-		try (Connection con = 
+		try (Connection con =
 				DriverManager.getConnection(
 						"jdbc:oracle:thin:@localhost:1521:XE",
 						"book_ex",
 						"1234")){
 			log.info(con);
-			
+
 			con.close();
 		} catch (Exception e) {
 			fail(e.getMessage());
