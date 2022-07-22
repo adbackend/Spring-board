@@ -17,6 +17,8 @@ public interface BoardService {
 
 //	public List<BoardVO> getList();
 	
-	public List<BoardVO> getList(Criteria cri);
+	public List<BoardVO> getList(Criteria cri); //페이징 처리된 목록
+	
+	public int getTotal(Criteria cri); //전체 데이터 개수
 
 }

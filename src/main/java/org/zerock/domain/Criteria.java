@@ -9,9 +9,9 @@ import lombok.ToString;
 @ToString
 public class Criteria {
 
-	private int pageNum;
-	private int amount;
-
+	private int pageNum; //페이지번호
+	private int amount; //한페이지당 출력되는 데이터수
+	
 	public Criteria() {
 		this(1,10);
 	}

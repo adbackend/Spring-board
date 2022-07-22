@@ -54,6 +54,7 @@ public class BoardServiceImpl implements BoardService{
 //		return mapper.getList();
 //	}
 	
+	//페이징 처리된 - 목록
 	@Override
 	public List<BoardVO> getList(Criteria cri){
 		
@@ -61,6 +62,18 @@ public class BoardServiceImpl implements BoardService{
 		
 		return mapper.getListWithPaging(cri);
 	}
+
+	//전체 데이터 개수
+	@Override
+	public int getTotal(Criteria cri) {
+		
+		 log.info("get total count");
+		 
+		 return mapper.getTotalCount(cri);
+		 
+	}
+	
+	
 
 }
 
