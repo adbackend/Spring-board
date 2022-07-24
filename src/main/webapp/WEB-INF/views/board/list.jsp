@@ -135,9 +135,11 @@
 		$(".paginate_button a").on("click", function(e){
 		
 			e.preventDefault();
-			console.log("click!!!..........");
+
+			var targetPage = $(this).attr("href");
+			console.log(targetPage);
 			
-			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.find("input[name='pageNum']").val(targetPage);
 			actionForm.submit();
 		})
 		
@@ -145,6 +147,10 @@
 		$(".move").on("click",function(e){
 			
 			e.preventDefault();
+			
+			var targetBno = $(this).attr("href");
+			console.log(targetBno);
+			
 			actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"'/>");
 			actionForm.attr("action","/board/get");
 			actionForm.submit();

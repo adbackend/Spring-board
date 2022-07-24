@@ -38,14 +38,14 @@
 					<label>Writer</label> <input class="form-control" name='writer' value='<c:out value="${board.writer}"/>' readonly="readonly">
 				</div>
 
-				<button data-oper='modify' class="btn btn-default">Modify</button>
         		<button data-oper='list' class="btn btn-info">List</button>
+				<button data-oper='modify' class="btn btn-default">Modify</button>
 
 
-				<form id="operForm" action="/board/modify" method="get">
+				<form id="operForm" action="/board/list" method="get">
 					<input type="hidden" id="bno" name="bno" value="<c:out value='${board.bno}'/>"/>
-					<input type="hidden" id="pageNum" value='<c:out value="${cri.pageNum}"/>'/>
-					<input type="hidden" id="amount" value='<c:out value="${cri.amount}"/>'/>
+					<input type="hidden" id="pageNum" name="pageNum" value='<c:out value="${cri.pageNum}"/>'/>
+					<input type="hidden" id="amount"  name="amount" value='<c:out value="${cri.amount}"/>'/>
 				</form>
 				
 			</div>
@@ -64,16 +64,18 @@
 		
 		var operForm = $("#operForm");
 		
-		$("button[data-oper='modify']").on("click",function(e){
-			operForm.attr("action","/board/modify").submit();
-		});
 		
 		$("button[data-oper='list']").on("click",function(e){
+			e.preventDefault();
 			operForm.find("#bno").remove();
 			operForm.attr("action","/board/list");
 			operForm.submit();
 		});
 		
+		$("button[data-oper='modify']").on("click",function(e){
+			e.preventDefault();
+			operForm.attr("action","/board/modify").submit();
+		});
 		
 		
 	});

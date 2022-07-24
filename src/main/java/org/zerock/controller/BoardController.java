@@ -35,6 +35,8 @@ public class BoardController {
 	public void list(Criteria cri, Model model) {
 		
 		log.info("list: " + cri);
+		log.info("리스트 페이지 cri - 한페이지당 출력되는 데이터수.... " + cri.getAmount());
+		log.info("리스트 페이지 cri - 현재 페이지번호...." + cri.getPageNum());
 		
 		model.addAttribute("list",boardService.getList(cri));
 		//model.addAttribute("pageMaker", new PageDTO(cri, 123));
@@ -77,6 +79,9 @@ public class BoardController {
 	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		
 		log.info("/get or modify..............................");
+		log.info("한페이지당 출력되는 데이터수.........."+ cri.getAmount());
+		log.info("현재페이지............"+ cri.getPageNum());
+		
 		model.addAttribute("board",boardService.get(bno));
 		
 	}
