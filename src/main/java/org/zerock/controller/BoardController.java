@@ -51,7 +51,8 @@ public class BoardController {
 	public void register() {
 		
 	}
-
+	
+	//글상세
 	@PostMapping("/register")
 	public String register(BoardVO board, RedirectAttributes rttr) {
 
@@ -110,6 +111,8 @@ public class BoardController {
 		
 		rttr.addAttribute("pageNum",cri.getPageNum());
 		rttr.addAttribute("amount",cri.getAmount());
+		rttr.addAttribute("type",cri.getType());
+		rttr.addAttribute("keyword",cri.getKeyword());
 		
 		return "redirect:/board/list";
 		
@@ -139,6 +142,8 @@ public class BoardController {
 		
 		rttr.addAttribute("pageNum",cri.getPageNum());
 		rttr.addAttribute("amount",cri.getAmount());
+		rttr.addAttribute("type",cri.getType());
+		rttr.addAttribute("keyword",cri.getKeyword());
 		
 		return "redirect:/board/list";
 	}

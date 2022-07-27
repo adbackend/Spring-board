@@ -83,19 +83,32 @@ public class BoardMapperTests {
 //		log.info("update count: " + count);
 //	}
 	
-	//페이징 테스트
+//	//페이징 테스트
+//	@Test
+//	public void testPaging() {
+//		
+//		Criteria cri = new Criteria();
+//		
+//		// 한페이지당 10개씩 출력하는 3페이지
+//		cri.setPageNum(3);
+//		cri.setAmount(10);
+//		
+//		
+//		List<BoardVO> list = mapper.getListWithPaging(cri);
+//		list.forEach(board->log.info(board));
+//		
+//	}
+	
+	//검색 테스트
 	@Test
-	public void testPaging() {
+	public void testSearch() {
 		
 		Criteria cri = new Criteria();
-		
-		// 한페이지당 10개씩 출력하는 3페이지
-		cri.setPageNum(3);
-		cri.setAmount(10);
-		
-		
+		cri.setType("새로");
+		cri.setKeyword("TC");
+		System.out.println("111111111111111111111111111111111111111111111111111111111111");
 		List<BoardVO> list = mapper.getListWithPaging(cri);
-		list.forEach(board->log.info(board));
+		list.forEach(board -> log.info(board));
 		
 	}
 

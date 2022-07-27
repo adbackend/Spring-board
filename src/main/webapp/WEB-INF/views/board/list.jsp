@@ -46,6 +46,30 @@
 
 				</table>
 				
+				<!-- 검색처리 -->
+				<div class="row">
+					<div class="col-lg-12">
+						<form id="searchForm" action="/board/list" method="get">
+							<select name="type">
+								<option value="" <c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--
+								<option value="T" <c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
+								<option value="C" <c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>내용</option>
+								<option value="W" <c:out value="${pageMaker.cri.type eq 'W'?'selected':''}"/>>작성자</option>
+								<option value="TC" <c:out value="${pageMaker.cri.type eq 'TC'?'selected':''}"/>>제목or 내용</option>
+								<option value="TW" <c:out value="${pageMaker.cri.type eq 'TW'?'selected':''}"/>>제목or 작성자</option>
+								<option value="TWC" <c:out value="${pageMaker.cri.type eq 'TWC'?'selected':''}"/>>제목or 내용 or 작성자</option>
+							</select>
+							
+							<input type="text" name="keyword" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
+
+							<input type="hidden" name="pageNum" value='<c:out value="${pageMaker.cri.pageNum}"/>'/>
+							<input type="hidden" name="amount" value='<c:out value="${pageMaker.cri.amount}"/>'/>
+							
+							<button class="btn btn-default">검색</button>
+						</form>
+					</div>
+				</div>
+				
 				<!-- 페이징 시작 -->
 				
 				<div class='pull-right'>
@@ -70,6 +94,11 @@
 			<form id="actionForm" action="/board/list" method="get">
 				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"/>
 				<input type="hidden" name="amount" value="${pageMaker.cri.amount}"/>
+				
+				<input type="hidden" name="type" value='<c:out value="${pageMaker.cri.type}"/>'/>
+				<input type="hidden" name="keyword" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
+				
+				
 			</form>			
 			
 			<!-- Modal  추가 -->
@@ -84,8 +113,7 @@
 						<div class="modal-body">처리가 완료되었습니다.</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary" data-dismiss="modal">Save
-								changes</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
 						</div>
 					</div>
 					<!-- /.modal-content -->
@@ -154,6 +182,26 @@
 			actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"'/>");
 			actionForm.attr("action","/board/get");
 			actionForm.submit();
+			
+		});
+		
+		//검색처리
+		var searchForm = $("#searchForm");
+		$("#searchForm button").on("click", function(e){
+				
+			if(!searchForm.find("option:selected").val()){
+				alert("검색 종류를 선택하세요");
+				return false;
+			}
+			
+			if(!searchForm.find("input[name='keyword']").val()){
+				alert("키워드를 입력하세요");
+				return false;
+			}
+			
+			searchForm.find("input[name='pageNum']").val("1");
+			e.preventDefault();
+ 			searchForm.submit();
 			
 		});
 		
