@@ -95,15 +95,18 @@
 				
 				var pageNumTag = $("input[name='pageNum']").clone();
 				var amountTag = $("input[name='amount']").clone();
-				console.log(pageNumTag);
-				console.log(pageNumTag.toString());
-				console.log(Object.keys(pageNumTag));
+				var type = $("input[name='type']").clone();
+				var keyword = $("input[name='keyword']").clone();
 				
 				formObj.empty();
 				formObj.append(pageNumTag);
 				formObj.append(amountTag);
+				formObj.append(type);
+				formObj.append(keyword);
 			}
-			//formObj.submit();
+			
+			formObj.submit();
+			
 		});
 		
 	});
